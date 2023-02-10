@@ -1,0 +1,24 @@
+{% extends 'irl-base.html' %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+
+<div style="position: relative; text-align: center;">
+
+    <h1 class="display-2" style="margin-top: 3rem;">Welcome to Flask Feedback!</h1>
+
+    <div class="card" style="margin: 7.5rem auto; width: 50%;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h3 class="display-4" style="margin-top: 3rem; margin-bottom: 2rem;">Already have an account?</h3>
+                <a style="margin-top: 0.75rem; margin-bottom: 1rem; width: 70%;" class="btn btn-primary" href="/login">Login</a>
+                <p style="margin-bottom: 3rem;"><small><a href="/register">New user? Click here to register</a></small></p>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}

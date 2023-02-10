@@ -1,0 +1,51 @@
+{% extends 'irl-base.html' %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+
+<div class="container" id="form-container">
+    <h1 class="display-1">Login</h1>
+    <p class="lead">Login below to see some feedback!</p>
+
+    <div class="row justify-content-center" style="margin-top: 3rem;">
+        <div class="col-md-12">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        {{ form.username.label(class_="text-info") }}
+                        {{ form.username(class_="form-control form-control") }}
+
+                        {% for error in form.username.errors %}
+                            <span class="form-text text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        {{ form.password.label(class_="text-info") }}
+                        {{ form.password(class_="form-control form-control") }}
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <button class="btn btn-success" id="submit-login-btn" style="margin-right: 0.75rem; width: 10rem;">Submit</button>
+                        <!-- <button class="btn btn-danger" id="cancel-login-btn" style="margin-left: 0.75rem; width: 10rem;">Cancel</button> -->
+                        <a style="margin-left: 0.75rem; width: 10rem;" class="btn btn-danger" href="/">Cancel</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ username }}{% endblock %}
+
+
+{% block content %}
+<div>
+    <div class="card my-4">
+        <div class="card-body">
+            {% if session['user_id'] == id %}
+                <div style="float:right;">
+                    <form action="/users/{{ username }}/delete" method="POST" style="display:inline;">
+                        <button class="btn btn-outline-danger btn-sm" style="border:none;"><i class="fa-solid fa-user-xmark"></i></button>
+                    </form>
+                </div>
+            {% endif %}
+
+            <h1 class="card-title text-info" style="display:inline;">{{ username }}</h1>
+
+            <h5 class="card-subtitle mt-2 text-muted">Name</h5>
+            <p class="card-text">{{ first_name }} {{ last_name }}</p>
+
+            <h5 class="card-subtitle text-muted">Email</h5>
+            <p class="card-text">{{ email }}</p>
+        </div>
+    </div> 
+
+    {% if session['user_id'] == id %}
+        <div>
+            <div class="row">
+                <div class="col-12">
+                    <a class="btn btn-primary btn-block" href="/users/{{ username }}/feedback/add">Add Feedback</a>
+                </div>
+            </div>
+          
+            {% for fb in feedback %}
+                <div class="card my-4">
+                    <div class="card-body">
+                        {% if session['user_id'] == fb.user_id %}
+                            <div style="float:right;">
+                                <form action="/feedback/{{ fb.id }}/update" method="POST" style="display:inline;">
+                                    <button class="btn btn-outline-secondary btn-sm" style="border:none;"><i class="fas fa-edit"></i></button>
+                                </form>
+
+                                <form action="/feedback/{{ fb.id }}/delete" method="POST" style="display:inline;">
+                                    <button class="btn btn-outline-secondary btn-sm" style="border:none;"><i class="fa-solid fa-x"></i></button>
+                                </form>
+                            </div>
+                        {% endif %}
+
+                        <h6><a id="feedback-username" class="card-subtitle" href="/users/{{fb.user.username}}">@{{fb.user.username}}</a></h6>
+                        <h3 class="card-title text-info">{{fb.title}}</h3>
+                        <p class="card-text">{{fb.content}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div>
+            {% for fb in feedback %}
+                <div class="card my-4">
+                    <div class="card-body">
+                        <h6><a id="feedback-username" class="card-subtitle" href="/users/{{fb.user.username}}">@{{fb.user.username}}</a></h6>
+                        <h3 class="card-title text-info">{{fb.title}}</h3>
+                        <p class="card-text">{{fb.content}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

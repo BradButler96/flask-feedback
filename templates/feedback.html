@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container" id="form-container">
+    <h1 class="display-3">Give some feedback</h1>
+    <p class="lead">We'd love to hear your thoughts!</p>
+
+    <div class="row justify-content-center" style="margin-top: 3rem;">
+        <div class="col-md-9">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        {{ form.title.label(class_="text-info") }}
+                        {{ form.title(class_="form-control form-control") }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-12">
+                        {{ form.content.label(class_="text-info") }}
+                        {{ form.content(class_="form-control form-control") }}
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <button class="btn btn-primary" id="submit-login-btn" style="margin-right: 0.75rem; width: 10rem;">Submit</button>
+                        <a style="margin-left: 0.75rem; width: 10rem;" class="btn btn-danger" href="/users/{{ username }}">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
